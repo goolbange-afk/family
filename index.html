@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><title>우리가족</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ff8a3d">
+<style>
+*{box-sizing:border-box}
+:root{--pr:#ff8a3d;--bg:#fff8ee;--ln:#eee;--sub:#888}
+body{margin:0;background:var(--bg);color:#2b2b2b;font-family:-apple-system,"Noto Sans KR",sans-serif;padding:env(safe-area-inset-top,0) 0 90px}
+body.kid{font-size:19px}
+h1{font-size:22px;margin:0;padding:14px 16px 4px}
+.who{display:flex;gap:8px;padding:6px 16px}
+.who button{flex:1;padding:10px 4px;border-radius:22px;border:2px solid var(--ln);background:#fff;font-size:16px}
+.who button.on{background:var(--pr);border-color:var(--pr);color:#fff;font-weight:700}
+main{padding:6px 16px}
+.card{background:#fff;border-radius:16px;padding:14px;margin:10px 0;box-shadow:0 1px 4px #0002}
+.meta{font-size:12px;color:var(--sub)}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:10px;color:#fff;margin-right:6px}
+.good{background:#34a853}.bad{background:#e8734a}.event{background:#4a7be8}.note{background:#9b6be8}
+input,textarea,select{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;font-size:16px;margin:4px 0;font-family:inherit}
+.btn{background:var(--pr);color:#fff;border:0;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:700}
+.btn.sm{padding:6px 12px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{flex:1 1 44%;padding:16px 8px;border-radius:16px;border:0;font-size:18px;color:#fff;font-weight:700}
+.chip.g{background:#34a853}.chip.b{background:#e8874a}
+.row{display:flex;gap:6px;align-items:center}
+.cm{font-size:14px;padding:5px 0;border-top:1px solid var(--ln);margin-top:5px}
+.big{font-size:56px;text-align:center;margin:0}
+.del{float:right;background:none;border:0;color:#aaa;font-size:16px}
+.tabs{position:fixed;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0)}
+.tabs button{flex:1;padding:8px 0;border:0;background:none;color:var(--sub);font-size:12px}
+.tabs button.on{color:var(--pr);font-weight:700}
+.tabs span{display:block;font-size:24px}
+.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 18px;border-radius:20px;font-size:16px;display:none;z-index:9}
+.off{background:#fde8e8;color:#a33;padding:8px;border-radius:10px;font-size:13px;margin:6px 0}
+</style></head><body>
+<h1>🏠 우리가족</h1>
+<div class="who" id="who"></div>
+<div id="toast" class="toast"></div>
+<main id="main"></main>
+<div class="tabs" id="tabs"></div>
+<script>
+const DB="https://hyfamily-default-rtdb.asia-southeast1.firebasedatabase.app";
+const FAM=["아빠","엄마","아들"],ICON={아빠:"👨",엄마:"👩",아들:"👦"};
+const GOODQ=["🪥 양치했어요","📚 숙제했어요","🧸 정리했어요","🍚 밥 잘 먹었어요","🤝 도와줬어요","🙇 먼저 사과했어요"];
+const BADQ=["😠 화냈어요","📱 게임 오래 했어요","🍬 약속 안 지켰어요","🛏️ 늦게 잤어요"];
+let me=null,tab="feed",data={},last="",offline=false;
+try{me=localStorage.getItem("me")}catch(e){}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L=o=>Object.entries(o||{}).map(([id,v])=>({...v,id}));
+const fmt=t=>{const d=new Date(t);return (d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
+async function api(m,p,b){const r=await fetch(DB+p+".json",{method:m,body:b?JSON.stringify(b):undefined});if(!r.ok)throw new Error(r.status);return r.json()}
+async function w(m,p,b){try{await api(m,p,b);await poll(true)}catch(e){alert("저장이 안 됐어요. 인터넷을 확인해 주세요.")}}
+function toast(t){const e=$("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",1800)}
+function bal(p){return L(data.stickers).filter(s=>s.to===p).reduce((a,s)=>a+(s.n||1),0)-L(data.gifts).filter(g=>g.done).reduce((a,g)=>a+g.cost,0)}
+async function poll(force){try{const d=await api("GET","");const s=JSON.stringify(d||{});offline=false;if(s!==last||force){last=s;data=d||{};render()}}catch(e){if(!offline){offline=true;render()}}}
+function setMe(f){me=f;try{localStorage.setItem("me",f)}catch(e){}render()}
+function go(t){tab=t;render()}
+function head(){document.body.className=me==="아들"?"kid":"";
+ $("who").innerHTML=FAM.map(f=>`<button class="${me===f?"on":""}" onclick="setMe('${f}')">${ICON[f]} ${f}</button>`).join("");
+ $("tabs").innerHTML=[["feed","📝","오늘"],["stk","⭐","스티커"],["gift","🎁","선물"],["plan","📅","일정"]].map(([k,i,l])=>`<button class="${tab===k?"on":""}" onclick="go('${k}')"><span>${i}</span>${l}</button>`).join("")}
+function card(p){const cs=L(p.cm).sort((a,b)=>a.ts-b.ts).map(c=>`<div class="cm"><b>${ICON[c.by]||""}${esc(c.by)}</b> ${esc(c.t)}</div>`).join("");
+ const lab={good:"😊 잘한일",bad:"😢 아쉬운일",event:"📅 일정",note:"💬 공유"}[p.type];
+ return `<div class="card"><button class="del" onclick="delP('${p.id}')">✕</button><span class="tag ${p.type}">${lab}</span><b>${ICON[p.by]||""} ${esc(p.by)}</b>
+ <div class="meta">${fmt(p.ts)}${p.date?" · 📅 "+esc(p.date):""}</div><p style="margin:8px 0;white-space:pre-wrap">${esc(p.text)}</p>${cs}
+ <div class="row"><input id="c${p.id}" placeholder="댓글 달기" style="margin:6px 0"><button class="btn sm" onclick="addC('${p.id}')">등록</button></div></div>`}
+function render(){head();const a=document.activeElement;
+ if(a&&/INPUT|TEXTAREA/.test(a.tagName)&&a.value)return;
+ const m=$("main"),off=offline?`<div class="off">인터넷 연결을 확인해 주세요</div>`:"";
+ if(!me){m.innerHTML=`<div class="card"><p class="big">👋</p><p style="text-align:center;font-size:18px">위에서 <b>나는 누구?</b> 를 눌러주세요</p></div>`;return}
+ const posts=L(data.posts).sort((a,b)=>b.ts-a.ts);
+ if(tab==="feed"){const l=posts.filter(p=>p.type!=="event");
+  const kid=me==="아들"?`<div class="card"><b>😊 오늘 잘한일 (눌러서 올려요)</b><div class="chips">${GOODQ.map(q=>`<button class="chip g" onclick="quick('good','${q}')">${q}</button>`).join("")}</div>
+  <b>😢 오늘 아쉬운일</b><div class="chips">${BADQ.map(q=>`<button class="chip b" onclick="quick('bad','${q}')">${q}</button>`).join("")}</div></div>`:"";
+  m.innerHTML=off+kid+`<div class="card"><select id="ptype"><option value="good">😊 잘한일</option><option value="bad">😢 아쉬운일</option><option value="note">💬 그냥 공유</option></select>
+  <textarea id="ptext" rows="2" placeholder="${me==="아들"?"내가 직접 쓰기 (안 써도 돼요)":"내용을 적어주세요"}"></textarea><button class="btn" onclick="addP()">올리기</button></div>`+(l.map(card).join("")||`<p class="meta">첫 글을 올려보세요!</p>`)}
+ else if(tab==="plan"){const l=posts.filter(p=>p.type==="event").sort((a,b)=>(a.date||"9").localeCompare(b.date||"9"));
+  m.innerHTML=off+`<div class="card"><input id="pdate" type="date"><textarea id="ptext" rows="2" placeholder="중요 일정/내용"></textarea><button class="btn" onclick="addP('event')">📅 올리기</button></div>`+(l.map(card).join("")||`<p class="meta">등록된 일정이 없어요</p>`)}
+ else if(tab==="stk"){
+  m.innerHTML=off+FAM.map(f=>`<div class="card"><b>${ICON[f]} ${f}</b><span style="float:right;font-size:24px">⭐ ${bal(f)}</span></div>`).join("")+
+  `<div class="card"><b>⭐ 칭찬스티커 주기</b><select id="sto">${FAM.filter(f=>f!==me).map(f=>`<option>${f}</option>`).join("")}</select>
+  <input id="sr" placeholder="왜 주나요? (예: 스스로 양치했어요)"><input id="sn" type="number" value="1" min="1" max="5"><button class="btn" onclick="giveS()">⭐ 주기</button></div>`+
+  L(data.stickers).sort((a,b)=>b.ts-a.ts).slice(0,30).map(s=>`<div class="card"><b>${ICON[s.from]}${esc(s.from)} → ${ICON[s.to]}${esc(s.to)}</b> ⭐${s.n||1}<div class="meta">${fmt(s.ts)}</div>${esc(s.r)}</div>`).join("")}
+ else{const gs=L(data.gifts).sort((a,b)=>b.ts-a.ts);
+  m.innerHTML=off+(me!=="아들"?`<div class="card"><b>🎁 선물 등록</b><input id="gt" placeholder="선물 이름 (예: 아이스크림)"><input id="gc" type="number" value="5" min="1"><div class="meta">필요한 스티커 수</div><button class="btn" onclick="addG()">등록</button></div>`:`<div class="card"><p class="big">⭐ ${bal("아들")}</p><p style="text-align:center">내 스티커</p></div>`)+
+  gs.map(g=>`<div class="card">${me!=="아들"?`<button class="del" onclick="delG('${g.id}')">✕</button>`:""}<b>🎁 ${esc(g.title)}</b> · ⭐${g.cost}<div class="meta">${ICON[g.from]}${esc(g.from)}가 준비 · ${g.done?"✅ 교환완료":"기다리는 중"}</div>
+  ${!g.done&&me==="아들"?`<button class="btn" style="margin-top:8px;width:100%" onclick="redeem('${g.id}')">${bal("아들")>=g.cost?"🎁 교환하기!":"⭐ 더 모아요"}</button>`:""}</div>`).join("")||`<p class="meta">등록된 선물이 없어요</p>`}}
+function addP(ev){const t=($("ptext").value||"").trim();if(!t)return;const type=ev||$("ptype").value;
+ w("POST","/posts",{type,by:me,text:t,date:ev?$("pdate").value:"",ts:Date.now()}).then(()=>toast("올렸어요! ✨"))}
+function quick(type,t){w("POST","/posts",{type,by:me,text:t,ts:Date.now()}).then(()=>toast(type==="good"?"참 잘했어요! 👏":"다음엔 더 잘할 수 있어요 💪"))}
+function addC(id){const i=$("c"+id),t=i.value.trim();if(!t)return;i.value="";w("POST","/posts/"+id+"/cm",{by:me,t,ts:Date.now()})}
+function delP(id){if(confirm("지울까요?"))w("DELETE","/posts/"+id)}
+function giveS(){const r=$("sr").value.trim();if(!r)return alert("이유를 적어주세요");w("POST","/stickers",{from:me,to:$("sto").value,r,n:Math.max(1,+$("sn").value||1),ts:Date.now()}).then(()=>toast("⭐ 보냈어요!"))}
+function addG(){const t=$("gt").value.trim();if(!t)return;w("POST","/gifts",{title:t,cost:Math.max(1,+$("gc").value||1),from:me,done:false,ts:Date.now()})}
+function redeem(id){const g=data.gifts[id];if(bal("아들")<g.cost)return toast("스티커를 더 모아요! ⭐");w("PATCH","/gifts/"+id,{done:true}).then(()=>toast("🎉 선물 교환 완료!"))}
+function delG(id){if(confirm("지울까요?"))w("DELETE","/gifts/"+id)}
+render();poll();setInterval(poll,3000);
+</script></body></html>
