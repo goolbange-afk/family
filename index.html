@@ -50,7 +50,7 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const L=o=>Object.entries(o||{}).map(([id,v])=>({...v,id}));
 const fmt=t=>{const d=new Date(t);return (d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
 async function api(m,p,b){const r=await fetch(DB+p+".json",{method:m,body:b?JSON.stringify(b):undefined});if(!r.ok)throw new Error(r.status);return r.json()}
-async function w(m,p,b){try{await api(m,p,b);await poll(true)}catch(e){alert("저장이 안 됐어요. 인터넷을 확인해 주세요.")}}
+async function w(m,p,b){try{await api(m,p,b);document.querySelectorAll("input,textarea").forEach(e=>{if(e.type!=="number"&&e.type!=="date")e.value=""});if(document.activeElement)document.activeElement.blur();offline=false;await poll(true)}catch(e){alert("저장이 안 됐어요. 인터넷을 확인해 주세요.")}}
 function toast(t){const e=$("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",1800)}
 function bal(p){return L(data.stickers).filter(s=>s.to===p).reduce((a,s)=>a+(s.n||1),0)-L(data.gifts).filter(g=>g.done).reduce((a,g)=>a+g.cost,0)}
 async function poll(force){try{const d=await api("GET","");const s=JSON.stringify(d||{});offline=false;if(s!==last||force){last=s;data=d||{};render()}}catch(e){if(!offline){offline=true;render()}}}
