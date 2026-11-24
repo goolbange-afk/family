@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><title>우빈이가족</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f1f4fa" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#10152a" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="우빈이가족"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#f1f4fa;--card:#fff;--ink:#1c2540;--mute:#68739a;--line:#e2e7f2;--soft:#e8edf8;--sun:#ffc233;--btn:#1c2540;--logo:#1c2540;--hero:#1c2540;--sh:0 1px 2px #1c25400d,0 8px 20px -10px #1c254040;--gt:#17794a;--bt:#b4511f;--nt:#6a45b8;--et:#2f5bb5}
+@media(prefers-color-scheme:dark){:root{--bg:#10152a;--card:#1a2142;--ink:#eef1fb;--mute:#9aa5c9;--line:#2b3560;--soft:#252e57;--btn:#4f68e0;--logo:#2b3560;--hero:#222c5c;--sh:0 1px 2px #0006;--gt:#6fdca0;--bt:#ffa478;--nt:#c3a8ff;--et:#9bbcff}}
+html{color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.5;letter-spacing:-.01em;padding:0 0 130px}
+body.kid{font-size:19px}
+button{font-family:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.top{position:sticky;top:0;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 10px;background:var(--bg)}
+.logo{display:flex;align-items:center;gap:9px;border:0;background:none;padding:0;color:var(--ink)}
+.logo i{width:34px;height:34px;border-radius:11px;background:var(--logo);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:19px}
+.logo b{font-size:20px;font-weight:800;letter-spacing:-.03em}
+.tr{display:flex;gap:6px;align-items:center}
+.me{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink);padding:6px 11px;border-radius:20px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.mi{width:22px;height:22px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;font-size:15px;background:var(--soft)}
+.me.gh{background:#ffffff2e;border-color:#ffffff55;color:#fff}
+main{max-width:640px;margin:0 auto;padding:4px 14px}
+.ph{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+h3{margin:22px 4px 8px;font-size:17px;font-weight:800}
+.hero0{position:relative;overflow:hidden;border-radius:28px;background:var(--hero);color:#fff;padding:20px 16px 16px;box-shadow:var(--sh)}
+.hero0:before,.phero:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(#ffffff55 1.2px,transparent 1.8px),radial-gradient(#ffc233aa 1.6px,transparent 2.2px);background-size:46px 46px,77px 77px;background-position:0 0,23px 31px;opacity:.45}
+.hero0>*,.phero>*{position:relative}
+.hd{font-size:13px;opacity:.75;font-weight:600}
+.hero0 h2{margin:2px 0 4px;font-size:25px;line-height:1.25;font-weight:800;letter-spacing:-.03em}
+.hs{font-size:14px;opacity:.9}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.tile{border:1px solid #ffffff2a;background:#ffffff17;color:#fff;border-radius:20px;padding:12px 4px 10px;text-align:center}
+.tile b{display:block;font-size:15px}
+.tile em{display:block;font-style:normal;font-size:20px;font-weight:800;color:var(--sun)}
+.tile small{display:block;font-size:12px;opacity:.85}
+.ta{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;background:#ffffff22;overflow:hidden;margin:0 auto 6px}
+.card{background:var(--card);border-radius:20px;padding:14px 15px;margin:10px 0;box-shadow:var(--sh);border:1px solid var(--line)}
+.cmp .ct{font-weight:800;font-size:16px}
+.dh{margin:20px 4px 2px;font-size:13px;font-weight:800;color:var(--mute)}
+.seg{display:flex;gap:6px;margin:12px 0 4px;overflow-x:auto}
+.seg button{flex:1;white-space:nowrap;border:1.5px solid var(--line);background:var(--card);border-radius:18px;padding:8px 12px;font-size:14px;font-weight:700;color:var(--mute)}
+.seg button.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.chd{display:flex;gap:11px;align-items:center}
+.av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:25px;flex:none;overflow:hidden}
+.meta{font-size:12px;color:var(--mute)}
+.tag{font-size:12px;font-weight:700;padding:2px 9px;border-radius:10px;margin-left:4px;white-space:nowrap}
+.t-good{background:#1f9d5522;color:var(--gt)}.t-bad{background:#e2703a22;color:var(--bt)}.t-note{background:#8b5fe022;color:var(--nt)}.t-event{background:#3d78e522;color:var(--et)}
+.newd{font-size:10px;font-weight:800;background:var(--sun);color:#3d2a00;border-radius:8px;padding:1px 6px;margin-left:6px}
+.tl{margin-left:auto;display:flex;flex:none}
+.tx{margin:10px 2px 8px;white-space:pre-wrap;line-height:1.6;font-size:16.5px}
+.act{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0}
+.rx{display:flex;gap:8px}
+.cm{display:flex;gap:7px;margin:7px 0;align-items:flex-start}
+.bub{background:var(--soft);border-radius:16px;padding:7px 12px;font-size:14px;flex:1;min-width:0;word-break:break-word}
+.cm .av{width:28px;height:28px;font-size:16px}
+.cin{display:flex;gap:6px;margin-top:8px}
+.cin input{margin:0;padding:10px 14px;border-radius:22px;font-size:15px}
+.snd{border:0;background:var(--btn);color:#fff;width:42px;height:42px;border-radius:50%;font-size:18px;font-weight:800;flex:none}
+input,textarea,select{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:14px;font-size:16px;margin:4px 0;font-family:inherit;background:var(--bg);color:inherit}
+textarea{line-height:1.5;resize:vertical}
+.btn{border:0;color:#fff;border-radius:14px;padding:12px 16px;font-size:16px;font-weight:700;background:var(--btn)}
+.btn.sm{padding:9px 12px;font-size:14px;flex:none}
+.btn.wide{width:100%;margin-top:6px;padding:14px;font-size:17px}
+.row{display:flex;gap:6px;align-items:center}
+.hero{border-radius:24px;padding:18px;color:#fff;display:flex;gap:14px;align-items:center}
+.hero .a{font-size:46px;background:#fff3;border-radius:50%;width:76px;height:76px;display:flex;align-items:center;justify-content:center;flex:none}
+.hero h2{margin:0;font-size:22px}.hero div div{margin-top:4px;font-size:15px}
+.phero{position:relative;overflow:hidden;border-radius:28px;padding:18px 16px 14px;color:#fff;background:var(--c);background:linear-gradient(150deg,color-mix(in srgb,var(--c) 70%,#000),color-mix(in srgb,var(--c) 42%,#000));display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;box-shadow:var(--sh)}
+.pa{width:88px;height:88px;border-radius:50%;background:#ffffff26;box-shadow:0 0 0 4px #ffffff66;display:flex;align-items:center;justify-content:center;font-size:56px;overflow:hidden}
+.pi h2{margin:0;font-size:22px;font-weight:800}
+.stars{font-size:15px}.stars b{font-size:34px;color:var(--sun);font-weight:800;line-height:1.1}
+.sub{font-size:13px;opacity:.92;margin-bottom:6px}
+.wk{grid-column:1/-1;display:flex;justify-content:space-between;margin-top:8px;font-size:12px;font-weight:700;text-align:center}
+.wk span{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.9}
+.wk i{width:32px;height:32px;border-radius:50%;background:#ffffff26;font-style:normal;display:flex;align-items:center;justify-content:center;font-size:15px}
+.wk .on i{background:#fff;color:#1c2540}
+.wk .td{opacity:1;text-decoration:underline;text-underline-offset:3px}
+.tip{text-align:center;line-height:1.7}
+.empty{text-align:center;padding:30px 10px;color:var(--mute);display:flex;flex-direction:column;gap:4px}.empty div{font-size:42px}.empty b{color:var(--ink)}
+.cl{font-weight:800;font-size:15px;margin:14px 0 2px}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.chip{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;padding:16px 8px;font-size:18px;font-weight:700;transition:transform .12s}
+.chip.on{transform:scale(.97);color:#fff}.chip.g.on{background:#1f9d55;border-color:#1f9d55}.chip.b.on{background:#e2703a;border-color:#e2703a}
+.ms{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ms .mt{flex:1;min-width:0}.ms .mt b{font-size:17px}
+.rw{background:#ffc23333;color:#7a5200;font-weight:800;border-radius:14px;padding:3px 10px;font-size:14px;white-space:nowrap}
+@media(prefers-color-scheme:dark){.rw{color:var(--sun)}}
+.sc{font-size:12px;font-weight:800;border-radius:10px;padding:2px 9px;color:#fff}
+.ms .full{flex-basis:100%}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.cw{text-align:center;font-size:12px;font-weight:700;padding:4px 0}
+.cd{background:var(--card);border:1px solid var(--line);border-radius:12px;min-height:72px;padding:4px;overflow:hidden}
+.cd.e{background:transparent;border:0}
+.cd.td{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.cd.td .dn{background:var(--ink);color:var(--bg)!important;border-radius:10px;padding:0 7px}
+.cd.sl{background:var(--soft)}
+.dn{font-size:13px;font-weight:800;display:inline-block}
+.cd i{display:block;font-style:normal;font-size:10px;color:#fff;border-radius:5px;padding:1px 4px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cd small{font-size:10px;color:var(--mute)}
+.cn{display:flex;align-items:center;justify-content:space-between;margin:4px 0 10px}.cn b{font-size:19px}
+.cn button{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:9px 16px;font-size:16px}
+.lg{font-size:12px;color:var(--mute);margin:8px 2px;display:flex;gap:12px;flex-wrap:wrap}
+.sr{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
+.stk{font-size:13px;font-weight:700;padding:4px 10px;border-radius:12px}
+.sbtn{border:0;border-radius:16px;padding:8px 14px;font-weight:800;font-size:14px;background:var(--sun);color:#3d2a00}
+.sbtn.off{background:var(--soft);color:var(--mute)}
+.rb{border:1.5px solid var(--line);background:var(--card);border-radius:16px;padding:6px 12px;font-size:15px;color:inherit}
+.rb.on{background:var(--soft);border-color:var(--ink);font-weight:800}
+.cm .del{font-size:13px;margin-left:4px}
+.gd{display:none;position:fixed;inset:0;background:#0009;z-index:20;align-items:center;justify-content:center;padding:18px}
+.gd.sheet{align-items:flex-end;padding:0}
+.shp{background:var(--bg);width:100%;max-width:640px;border-radius:28px 28px 0 0;padding:14px 14px calc(env(safe-area-inset-bottom,0px) + 16px);max-height:90vh;overflow:auto;animation:up .22s ease-out}
+.shp .hd2{display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:800;margin-bottom:2px}
+.shp .hd2 button{border:0;background:var(--soft);width:36px;height:36px;border-radius:50%;font-size:16px}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.gc{background:var(--card);color:var(--ink);border-radius:28px;padding:26px 22px 18px;width:100%;max-width:420px;text-align:center;box-shadow:0 10px 30px #0005}
+.gc .e{font-size:64px}.gc h2{margin:6px 0 10px;font-size:21px}
+.gc p{white-space:pre-line;line-height:1.6;font-size:16px;margin:0 0 14px;text-align:left;background:var(--soft);border-radius:16px;padding:14px}
+.dots{margin:6px 0 12px}.dots i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--line);margin:0 3px}.dots i.on{background:var(--ink);width:20px;border-radius:6px}
+.back{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:9px 16px;font-size:15px;font-weight:700;margin:2px 0 10px}
+.del{background:none;border:0;color:var(--mute);font-size:16px;padding:6px}
+.nav{position:fixed;left:10px;right:10px;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);max-width:620px;margin:0 auto;display:flex;gap:2px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 30px -8px #1c254066;padding:6px;border-radius:28px;z-index:7}
+.nav button{flex:1;position:relative;border:0;background:none;color:var(--mute);font-size:11px;font-weight:700;padding:6px 0 5px;border-radius:22px}
+.nav button span{display:flex;height:28px;align-items:center;justify-content:center;font-size:22px}
+.nav button span .ph{width:28px;height:28px}
+.nav button.on{background:var(--soft);color:var(--ink)}
+@supports(background:color-mix(in srgb,red,blue)){.nav button.on{background:color-mix(in srgb,var(--c,#888) 22%,transparent)}}
+.bd{position:absolute;top:1px;left:calc(50% + 6px);min-width:18px;height:18px;border-radius:9px;background:#e5484d;color:#fff;font-size:11px;line-height:18px;text-align:center;padding:0 5px;font-weight:800}
+.fab{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);z-index:7;border:0;background:var(--sun);color:#3d2a00;font-weight:800;font-size:16px;padding:14px 20px;border-radius:30px;box-shadow:0 10px 22px -6px #b8860bb0;display:flex;gap:6px;align-items:center}
+body.kid .fab{font-size:21px;padding:16px 26px}
+.big{font-size:60px;text-align:center;margin:0}
+.off{background:#e5484d22;color:var(--ink);border:1px solid #e5484d66;padding:10px 14px;border-radius:14px;font-size:13px;margin:8px 0}
+.toast{position:fixed;bottom:150px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:24px;font-size:16px;font-weight:700;display:none;z-index:30;max-width:90vw;text-align:center}
+.who{display:flex;flex-direction:column;gap:14px;padding:30px 6px}
+.who button{border:0;border-radius:26px;padding:26px;font-size:26px;color:#fff;font-weight:800;box-shadow:var(--sh)}
+.bu{position:fixed;bottom:130px;font-size:28px;pointer-events:none;z-index:40;animation:fly 1.5s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--dx),-55vh) rotate(50deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.bu{display:none}.shp{animation:none}}
+.msg{display:flex;gap:8px;margin:10px 0;align-items:flex-end}.msg.me2{flex-direction:row-reverse}
+.msg .av{width:34px;height:34px;font-size:20px}
+.mb{max-width:76%}.me2 .mb{text-align:right}
+.mn{font-size:12px;font-weight:800;margin:0 0 2px 4px}
+.bb{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:9px 14px;line-height:1.45;text-align:left;white-space:pre-wrap;word-break:break-word;font-size:16px}
+.me2 .bb{border:0;color:#fff}
+.msg .meta{margin:2px 6px}
+.cbar{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 84px);max-width:640px;margin:0 auto;padding:8px 14px;background:var(--bg);z-index:6;border-top:1px solid var(--line)}
+.cbar .cin{margin-top:0}
+.qk{display:flex;gap:6px;overflow-x:auto;margin-bottom:6px}.qk button{border:1.5px solid var(--line);background:var(--card);border-radius:18px;padding:5px 12px;font-size:16px;white-space:nowrap}
+#msgs{padding-bottom:90px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:10px}
+.gi{position:relative;border:0;padding:0;aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--soft)}
+.gi img.th{width:100%;height:100%;object-fit:cover;display:block}
+.gb{position:absolute;left:5px;bottom:5px;width:24px;height:24px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px #fff;font-size:14px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.gl{position:absolute;right:5px;bottom:5px;background:#000a;color:#fff;border-radius:10px;padding:0 7px;font-size:12px;font-weight:700}
+.pvc{background:var(--card);color:var(--ink);border-radius:24px;padding:12px;width:100%;max-width:480px;max-height:92vh;overflow:auto}
+.pvc img.full{width:100%;max-height:60vh;object-fit:contain;border-radius:14px;background:#000;display:block}
+.pvc .chd{margin:10px 0 4px}
+@media(prefers-reduced-motion:reduce){.x{}}
+</style></head><body>
+<div class="top"><button class="logo" onclick="go('home')" aria-label="우리집으로"><i>⭐</i><b>우빈이가족</b></button><div class="tr"><button class="me" onclick="showGuide()">❓ 사용법</button><span class="me" id="meb"></span></div></div>
+<div id="guide" class="gd"></div><div id="pm" class="gd"></div><div id="pv" class="gd" onclick="if(event.target===this)closePh()"></div><div id="sheet" class="gd sheet" onclick="if(event.target===this)closeSheet()"></div>
+<div id="toast" class="toast"></div>
+<main id="main"></main>
+<button class="fab" id="fab" onclick="openSheet()" style="display:none">✏️ <span id="fabl">글쓰기</span></button>
+<div class="nav" id="nav"></div>
+<script>
+const DB="https://hyfamily-default-rtdb.asia-southeast1.firebasedatabase.app";
+const FAM=["아빠","엄마","우빈"],I={아빠:"👨",엄마:"👩",우빈:"👦"},C={아빠:"#4a7be8",엄마:"#e8618c",우빈:"#f59e0b"};
+const GOODQ=["🪥 양치했어요","📚 숙제했어요","🧸 정리했어요","🍚 밥 잘 먹었어요","🤝 도와줬어요","🧑‍🤝‍🧑 친구들과 잘 지냈어요"],BADQ=["😠 화냈어요","📱 게임 오래 했어요","🍬 약속 안 지켰어요","🛏️ 늦게 잤어요","💢 친구들과 다퉜어요","😞 선생님께 혼났어요"];
+const MK={아빠:"dad",엄마:"mom",우빈:"son"},RK={dad:"아빠",mom:"엄마",son:"우빈"};
+let loaded=false,calY=new Date().getFullYear(),calM=new Date().getMonth(),selDay=null,sel=new Set(),me=null,view="home",data={},last="",offline=false;
+let fl="all",draft="",ptv="good",sheetOpen=false,seenAt=0,lastView="home";
+try{seenAt=+localStorage.getItem("seen")||0;if(!seenAt){seenAt=Date.now();localStorage.setItem("seen",seenAt)}}catch(e){seenAt=Date.now()}
+const DOW=["일","월","화","수","목","금","토"];
+let chatData={},lastChat="",cSeen=0,albumData={},lastAlbum="",albumT=0,phId=null,phFull={};
+try{cSeen=+localStorage.getItem("cseen")||0;if(!cSeen){cSeen=Date.now();localStorage.setItem("cseen",cSeen)}}catch(e){cSeen=Date.now()}
+const NODES=["posts","stickers","missions","profiles","admin"];
+const saveSeen=()=>{seenAt=Date.now();try{localStorage.setItem("seen",seenAt)}catch(e){}};
+if(typeof document!=="undefined"&&document.addEventListener)document.addEventListener("visibilitychange",()=>{if(document.hidden){try{localStorage.setItem("seen",Date.now())}catch(e){}}});
+const ago=t=>{const d=Date.now()-t;return d<6e4?"방금 전":d<36e5?Math.floor(d/6e4)+"분 전":today(t)?Math.floor(d/36e5)+"시간 전":fmt(t)};
+const dayLabel=t=>{const d=new Date(t),n=new Date(),y=new Date();y.setDate(n.getDate()-1);return d.toDateString()===n.toDateString()?"오늘":d.toDateString()===y.toDateString()?"어제":(d.getMonth()+1)+"월 "+d.getDate()+"일 ("+DOW[d.getDay()]+")"};
+try{me=localStorage.getItem("me")}catch(e){}
+if(me==="아들")me="우빈";if(me&&!FAM.includes(me))me=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L=o=>Object.entries(o||{}).map(([id,v])=>({...v,id}));
+const fmt=t=>{const d=new Date(t);return (d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
+const today=t=>new Date(t).toDateString()===new Date().toDateString();
+async function api(m,p,b){const r=await fetch(DB+(p||"/")+".json",{method:m,body:b?JSON.stringify(b):undefined});if(!r.ok){const e=new Error(r.status);e.status=r.status;throw e}return r.json()}
+async function w(m,p,b){try{await api(m,p,b);document.querySelectorAll("input,textarea").forEach(e=>{if(e.type!=="date")e.value=""});draft="";if(document.activeElement)document.activeElement.blur();offline=false;await poll(true);return true}catch(e){alert("저장이 안 됐어요. 인터넷을 확인해 주세요.")}}
+function toast(t){const e=$("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",1800)}
+const posts=()=>L(data.posts).sort((a,b)=>b.ts-a.ts);
+const bal=p=>L(data.stickers).filter(s=>s.to===p).reduce((a,s)=>a+(s.n||1),0);
+const cnt=(f,t)=>posts().filter(p=>p.by===f&&p.type===t&&today(p.ts)).length;
+async function core(){const r=await Promise.all(NODES.map(n=>api("GET","/"+n))),d={};NODES.forEach((n,i)=>{if(r[i]!=null)d[n]=r[i]});return d}
+async function poll(force){try{const d=await core();const s=JSON.stringify(d||{});offline=false;loaded=true;if(s!==last||force){last=s;data=JSON.parse(s.replace(/"아들"/g,'"우빈"'));render()}pollChat();if(view==="album")refreshAlbum()}catch(e){const p=(e&&(e.status===401||e.status===403))?"perm":true;if(offline!==p){offline=p;render()}}}
+async function hash(p){const t="hyfamily:"+p;try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}catch(e){let h=5381;for(const c of t)h=((h<<5)+h+c.charCodeAt(0))|0;return"d"+h}}
+async function getPw(){return api("GET","/admin/pw")}
+async function makePw(){const p=prompt("관리자 비밀번호를 만들어 주세요\n(아빠만 아는 숫자나 글자 4자리 이상)");if(p===null)return false;if(p.length<4){alert("4자리 이상으로 만들어 주세요");return false}
+ if(prompt("한 번 더 입력해 주세요")!==p){alert("두 번이 달라요. 처음부터 다시 해주세요");return false}
+ try{await api("PUT","/admin/pw",await hash(p));await poll(true);toast("🔑 비밀번호를 만들었어요");return true}catch(e){alert("저장이 안 됐어요. 인터넷을 확인해 주세요");return false}}
+async function askPw(){let adm;try{adm=await getPw()}catch(e){alert("인터넷 연결을 확인해 주세요");return null}if(!adm)return"none";const p=prompt("관리자(아빠) 비밀번호를 입력하세요");if(p===null)return null;if(await hash(p)!==adm){alert("비밀번호가 달라요");return null}return"ok"}
+async function pick(f){if(!confirm(I[f]+" "+f+" 맞나요?\n\n한 번 정하면 이 폰은 계속 "+f+" 이름으로 쓰여요.\n바꾸려면 관리자(아빠) 비밀번호가 필요해요."))return;
+ if(f==="아빠"){const r=await askPw();if(!r)return;if(r==="none"&&!(await makePw()))return}
+ setMe(f)}
+async function adminReset(){const r=await askPw();if(r==="ok"||(r==="none"&&confirm("관리자 비밀번호가 아직 없어요. 이 폰의 사용자를 바꿀까요?")))setMe(null)}
+function adminBanner(){return me==="아빠"&&loaded&&!(data.admin&&data.admin.pw)?`<div class="card" style="text-align:center"><b>🔑 관리자 비밀번호를 만들어 주세요</b><div class="meta">이름 바꾸기는 이 비밀번호로만 할 수 있어요</div><button class="btn" style="margin-top:8px" onclick="makePw()">비밀번호 만들기</button></div>`:""}
+function setMe(f){me=f;try{f?localStorage.setItem("me",f):localStorage.removeItem("me")}catch(e){}if(f)view=f==="우빈"?"우빈":"home";render()}
+function go(v){sheetOpen=false;view=v;try{history.pushState({v},"")}catch(e){}render();if(v==="album")refreshAlbum(true);scrollTo(0,v==="chat"?document.body.scrollHeight:0)}
+window.onpopstate=e=>{sheetOpen=false;view=(e.state&&e.state.v)||"home";render()};try{history.replaceState({v:"home"},"")}catch(e){}
+function tog(k){sel.has(k)?sel.delete(k):sel.add(k);render()}
+async function postSel(){const g={good:[],bad:[]};[...sel].forEach(k=>{const i=k.indexOf("|");g[k.slice(0,i)].push(k.slice(i+1))});
+ try{let n=0;for(const type of ["good","bad"]){if(!g[type].length)continue;await api("POST","/posts",{type,by:me,text:g[type].join(" · "),ts:Date.now()+n});n++}
+  const c=sel.size;sel.clear();sheetOpen=false;await poll(true);burst("⭐");toast("🎉 "+c+"개를 한 번에 올렸어요!")}catch(e){alert("저장이 안 됐어요. 인터넷을 확인해 주세요")}}
+function card(p){const sts=L(data.stickers),ss=sts.filter(s=>s.post===p.id),gave=!!me&&sts.some(s=>s.from===me&&!s.mission&&today(s.ts)),mine=ss.find(s=>s.from===me),isNew=view==="home"&&me&&p.by!==me&&p.ts>seenAt;
+ const sb=ss.map(s=>`<span class="stk" style="background:${C[s.from]}22;color:${C[s.from]}">⭐ ${esc(s.from)}${s.from===me?`<b onclick="delS('${s.id}')" style="margin-left:5px;cursor:pointer">✕</b>`:""}</span>`).join("");
+ const sbtn=p.type==="good"&&p.by!==me&&me?(mine?`<button class="sbtn off" onclick="delS('${mine.id}')">↩️ 스티커 취소</button>`:gave?`<button class="sbtn off" disabled>⭐ 오늘은 이미 줬어요</button>`:`<button class="sbtn" onclick="giveP('${p.id}')">⭐ 스티커 주기</button>`):"";
+ const lab={good:"😊 잘한일",bad:"😢 아쉬운일",event:"📅 일정",note:"💬 공유"}[p.type]||"";
+ const cs=L(p.cm).sort((a,b)=>a.ts-b.ts).map(c=>`<div class="cm"><span class="av" style="background:${C[c.by]}33">${A(c.by)}</span><div class="bub"><b style="color:${C[c.by]}">${esc(c.by)}</b> ${esc(c.t)}${(c.by===me||me==="아빠")?`<button class="del" onclick="delC('${p.id}','${c.id}')">✕</button>`:""}</div></div>`).join("");
+ return `<div class="card"><div class="chd"><span class="av" style="background:${C[p.by]}26;box-shadow:0 0 0 2px ${C[p.by]}">${A(p.by)}</span><div style="min-width:0"><div><b>${esc(p.by)}</b><span class="tag t-${p.type}">${lab}</span>${isNew?`<span class="newd">NEW</span>`:""}</div><div class="meta">${ago(p.ts)}${p.date?" · 📅 "+esc(p.date):""}${p.edited?" · 수정됨":""}</div></div>${canEdit(p)?`<span class="tl"><button class="del" aria-label="수정" onclick="editP('${p.id}')">✏️</button><button class="del" aria-label="삭제" onclick="delP('${p.id}')">🗑️</button></span>`:""}</div>
+ <p class="tx">${esc(p.text)}</p><div class="act">${rxBar(p)}${sbtn}</div>${sb?`<div class="sr">${sb}</div>`:""}${cs}<div class="cin"><input id="c${p.id}" placeholder="💬 댓글 남기기" onkeydown="if(event.key==='Enter')addC('${p.id}')"><button class="snd" aria-label="댓글 보내기" onclick="addC('${p.id}')">↑</button></div></div>`}
+function composer(){const kid=me==="우빈",ch=(q,t,c)=>`<button class="chip ${c}${sel.has(t+'|'+q)?' on':''}" onclick="tog('${t}|${q}')">${sel.has(t+'|'+q)?'✓ ':''}${q}</button>`;
+ return (kid?`<div class="card cmp"><div class="ct">오늘 있었던 일을 눌러요</div><div class="meta">여러 개를 골라서 한 번에 올릴 수 있어요</div><div class="cl">😊 잘한일</div><div class="chips">${GOODQ.map(q=>ch(q,"good","g")).join("")}</div><div class="cl">😢 아쉬운일</div><div class="chips">${BADQ.map(q=>ch(q,"bad","b")).join("")}</div>${sel.size?`<button class="btn wide" onclick="postSel()">✅ ${sel.size}개 올리기</button>`:""}</div>`:"")+
+ `<div class="card cmp"><div class="ct">${kid?"내가 직접 쓰기":"오늘의 이야기"}</div><div class="seg">${[["good","😊 잘한일"],["bad","😢 아쉬운일"],["note","💬 공유"]].map(([k,l])=>`<button class="${ptv===k?"on":""}" onclick="setPT('${k}')">${l}</button>`).join("")}</div><textarea id="ptext" rows="3" placeholder="내용을 적어주세요" oninput="draft=this.value">${esc(draft)}</textarea><button class="btn wide" style="background:${C[me]}" onclick="addP()">올리기</button></div>`}
+function weekInfo(f){const set=new Set(posts().filter(p=>p.by===f&&p.type==="good").map(p=>new Date(p.ts).toDateString())),w=[];
+ for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);w.push({l:DOW[d.getDay()],on:set.has(d.toDateString()),t:i===0})}
+ let s=0,i=set.has(new Date().toDateString())?0:1;for(;i<400;i++){const d=new Date();d.setDate(d.getDate()-i);if(set.has(d.toDateString()))s++;else break}
+ return{w,s}}
+function person(f){const col=C[f],ps=posts().filter(p=>p.by===f&&p.type!=="event"),sts=L(data.stickers).filter(s=>s.to===f).sort((a,b)=>b.ts-a.ts).slice(0,4),wi=weekInfo(f);
+ let h=`<div class="phero" style="--c:${col}"><div class="pa">${A(f)}</div><div class="pi"><h2>${f}의 공간</h2><div class="stars">⭐ <b>${bal(f)}</b>개 모음</div><div class="sub">오늘 😊 ${cnt(f,"good")} · 😢 ${cnt(f,"bad")}${wi.s>=2?" · 🔥 "+wi.s+"일 연속":""}</div>${(f===me||me==="아빠")?`<button class="me gh" onclick="editFace('${f}')">📷 얼굴 바꾸기</button>`:""}</div><div class="wk">${wi.w.map(d=>`<span class="${d.on?"on ":""}${d.t?"td":""}"><i>${d.on?"✓":""}</i>${d.l}</span>`).join("")}</div></div>`;
+ if(f===me)h+=composer();
+ else h+=`<div class="card tip">⭐ 마음에 드는 <b>잘한일</b> 글에서 스티커를 눌러주세요<div class="meta">하루에 한 번만 줄 수 있어요 · ${L(data.stickers).some(x=>x.from===me&&!x.mission&&today(x.ts))?"오늘은 이미 줬어요 ✓":"오늘 아직 안 줬어요"}</div></div>`;
+ if(sts.length)h+=`<h3>⭐ 최근 받은 스티커</h3>`+sts.map(s=>`<div class="card" style="padding:10px 14px">${E(s.from)} <b>${esc(s.from)}</b> → ⭐${s.n||1} · ${esc(s.r)}<span class="meta"> ${ago(s.ts)}</span>${(s.from===me&&!s.mission)?`<button class="del" onclick="delS('${s.id}')">✕</button>`:""}</div>`).join("");
+ if(f==="우빈")h+=missions();
+ return h+`<h3>${E(f)} ${f}의 기록</h3>`+(ps.map(card).join("")||`<div class="empty"><div>🌱</div><b>아직 기록이 없어요</b><span>${f===me?"위에서 오늘 이야기를 올려보세요":"첫 기록을 기다려요"}</span></div>`)}
+function missionCard(x){const s=x.status||"open",son=me==="우빈",st={open:["진행 중","#3d78e5"],done:["검사 대기","#c47f00"],approved:["완료","#1f9d55"]}[s]||["진행 중","#3d78e5"];let act="";
+ if(s==="open")act=son?`<button class="btn full" style="background:#1f9d55;font-size:19px;padding:14px" onclick="doneM('${x.id}')">✅ 다 했어요!</button>`:`<div class="meta full">우빈이 하는 중이에요</div>`;
+ else if(s==="done")act=son?`<div class="meta full">⏳ ${esc(x.by)}가 검사하고 있어요</div>`:x.by===me?`<div class="row full"><button class="btn" style="flex:1;background:#d98a00" onclick="okM('${x.id}')">👍 검사 완료 · ⭐${x.reward} 주기</button><button class="btn sm" style="background:#7d86a6" onclick="retryM('${x.id}')">다시 하기</button></div>`:`<div class="meta full">⏳ ${esc(x.by)}가 검사할 거예요</div>`;
+ else act=`<div class="meta full">🏆 완료! ⭐${x.reward}개 받았어요 · ${esc(x.okBy||x.by)} 검사</div>`;
+ return `<div class="card ms"><span class="av" style="background:${C[x.by]||"#999"}33">${I[x.by]?A(x.by):"🎯"}</span><div class="mt"><b>🎯 ${esc(x.title)}</b><div class="meta">${esc(x.by)}가 낸 미션 · ${ago(x.ts)}</div></div><span class="rw">⭐ ${x.reward}</span><span class="sc" style="background:${st[1]}">${st[0]}</span>${(x.by===me||me==="아빠")?`<button class="del" aria-label="미션 삭제" onclick="delM('${x.id}')">✕</button>`:""}${act}</div>`}
+function missions(){const ms=L(data.missions).sort((a,b)=>b.ts-a.ts),op=ms.filter(x=>x.status!=="approved"),dn=ms.filter(x=>x.status==="approved").slice(0,5);
+ let h=`<h3>🎯 미션</h3>`;
+ if(me!=="우빈")h+=`<div class="card"><b>🎯 새 미션 내주기</b><input id="mt" placeholder="예: 수학 문제집 2쪽 풀기"><div class="row"><select id="mr"><option value="1">⭐ 1개</option><option value="2">⭐ 2개</option><option value="3">⭐ 3개</option><option value="5">⭐ 5개</option></select><button class="btn" style="flex:none" onclick="addM()">내주기</button></div></div>`;
+ h+=op.map(missionCard).join("")||`<p class="meta">진행 중인 미션이 없어요</p>`;
+ if(dn.length)h+=`<div class="meta" style="margin:10px 4px">🏆 완료한 미션</div>`+dn.map(missionCard).join("");
+ return h}
+function missionNote(){const ms=L(data.missions),n=me==="우빈"?ms.filter(x=>(x.status||"open")==="open").length:ms.filter(x=>x.status==="done"&&x.by===me).length;
+ return n?`<button class="card" style="width:100%;text-align:left;font-size:16px;font-weight:800" onclick="go('우빈')">${me==="우빈"?"🎯 해야 할 미션이 "+n+"개 있어요!":"👍 검사할 미션이 "+n+"개 있어요"}</button>`:""}
+function addM(){const t=($("mt").value||"").trim();if(!t)return alert("미션 내용을 적어주세요");w("POST","/missions",{title:t,reward:+$("mr").value||1,by:me,status:"open",ts:Date.now()}).then(ok=>ok&&toast("🎯 미션을 냈어요!"))}
+function doneM(id){return w("PATCH","/missions/"+id,{status:"done",doneTs:Date.now()}).then(ok=>ok&&(burst("🎉"),toast("🎉 잘했어요! 확인을 기다려요")))}
+async function okM(id){const x=(data.missions||{})[id];if(!x||x.status!=="done"||x.by!==me)return;try{await api("PUT","/stickers/m_"+id,{from:me,to:"우빈",mission:id,r:String(x.title).slice(0,30),n:x.reward||1,ts:Date.now()})}catch(e){return alert("저장이 안 됐어요. 인터넷을 확인해 주세요")}return w("PATCH","/missions/"+id,{status:"approved",okBy:me,okTs:Date.now()}).then(ok=>ok&&(burst("⭐"),toast("👍 확인했어요! ⭐"+(x.reward||1))))}
+function retryM(id){const x=(data.missions||{})[id];if(!x||x.by!==me)return;w("PATCH","/missions/"+id,{status:"open"})}
+function delM(id){if(confirm("이 미션을 지울까요?"))w("DELETE","/missions/"+id)}
+function plan(){const pad=n=>String(n).padStart(2,"0"),key=d=>calY+"-"+pad(calM+1)+"-"+pad(d),tk=new Date().getFullYear()+"-"+pad(new Date().getMonth()+1)+"-"+pad(new Date().getDate());
+ const ev=posts().filter(p=>p.type==="event"),by={};ev.filter(p=>p.date).forEach(p=>(by[p.date]=by[p.date]||[]).push(p));
+ const first=new Date(calY,calM,1).getDay(),n=new Date(calY,calM+1,0).getDate();let cells="";
+ for(let i=0;i<first;i++)cells+=`<div class="cd e"></div>`;
+ for(let d=1;d<=n;d++){const k=key(d),es=by[k]||[],dw=(first+d-1)%7;
+  cells+=`<div class="cd${k===tk?" td":""}${k===selDay?" sl":""}" onclick="pickDay('${k}')"><span class="dn" style="color:${dw===0?"#e04a4a":dw===6?"#4a7be8":"inherit"}">${d}</span>${es.slice(0,2).map(e=>`<i style="background:${C[e.by]||"#999"}">${esc(e.text)}</i>`).join("")}${es.length>2?`<small>+${es.length-2}</small>`:""}</div>`}
+ let list,title;
+ if(selDay){title="📌 "+selDay.slice(5).replace("-","월 ")+"일 일정";list=ev.filter(p=>p.date===selDay)}
+ else{title="📌 다가오는 일정 · 공지";list=ev.filter(p=>!p.date||p.date>=tk).sort((a,b)=>(a.date||"9").localeCompare(b.date||"9"))}
+ return `<div class="cn"><button onclick="calMove(-1)">◀</button><b>${calY}년 ${calM+1}월</b><button onclick="calMove(1)">▶</button></div>
+ <div class="cal">${["일","월","화","수","목","금","토"].map((w,i)=>`<div class="cw" style="color:${i===0?"#e04a4a":i===6?"#4a7be8":"#888"}">${w}</div>`).join("")}${cells}</div>
+ <div class="lg"><span style="color:${C.아빠}">■ 아빠</span><span style="color:${C.엄마}">■ 엄마</span><span style="color:${C.우빈}">■ 우빈</span><span>날짜를 누르면 그날 일정이 보여요</span></div>
+ <div class="card"><b>＋ 일정 · 공지 올리기</b><input id="pdate" type="date" value="${selDay||tk}"><textarea id="ptext" rows="2" placeholder="일정이나 전달할 내용"></textarea><button class="btn" style="width:100%" onclick="addP('event')">올리기</button></div>
+ <h3>${title}${selDay?` <button class="btn sm" style="background:#999;margin-left:6px" onclick="pickDay(null)">전체 보기</button>`:""}</h3>`+(list.map(card).join("")||`<p class="meta">등록된 일정이 없어요</p>`)}
+function pickDay(k){if(document.activeElement)document.activeElement.blur();selDay=selDay===k?null:k;render()}
+function calMove(x){if(document.activeElement)document.activeElement.blur();let m=calM+x,y=calY;if(m<0){m=11;y--}else if(m>11){m=0;y++}calM=m;calY=y;selDay=null;render()}
+function home(){const k=me==="우빈",hr=new Date().getHours(),dt=new Date(),ms=L(data.missions),open=ms.filter(x=>(x.status||"open")==="open").length,chk=ms.filter(x=>x.status==="done"&&x.by===me).length;
+ const gr=hr<11?"좋은 아침이에요":hr<18?"안녕하세요":"오늘 하루 어땠어요?";
+ const sub=k?(open?"🎯 해야 할 미션이 "+open+"개 있어요":"오늘도 별을 모아봐요 ⭐"):(chk?"👍 검사할 미션이 "+chk+"개 있어요":"우리 가족의 오늘을 모아봤어요");
+ let h=`<div class="hero0"><div class="hd">${dt.getMonth()+1}월 ${dt.getDate()}일 ${DOW[dt.getDay()]}요일</div><h2>${esc(me)}${k?"아":""}, ${gr}</h2><div class="hs">${sub}</div><div class="tiles">${FAM.map(f=>`<button class="tile" onclick="go('${f}')"><span class="ta" style="box-shadow:0 0 0 3px ${C[f]}">${A(f)}</span><b>${f}</b><em>⭐ ${bal(f)}</em><small>😊${cnt(f,"good")} 😢${cnt(f,"bad")}</small></button>`).join("")}</div></div>`;
+ if(k){const lst=ms.filter(x=>x.status!=="approved").sort((a,b)=>b.ts-a.ts);if(lst.length)h+=`<h3>🎯 해야 할 미션</h3>`+lst.map(missionCard).join("")}else h+=missionNote();
+ h+=`<div class="seg">${[["all","전체"],["good","😊 잘한일"],["bad","😢 아쉬운일"],["note","💬 공유"]].map(([a,l])=>`<button class="${fl===a?"on":""}" onclick="setFl('${a}')">${l}</button>`).join("")}</div>`;
+ const list=posts().filter(p=>p.type!=="event"&&(fl==="all"||p.type===fl)).slice(0,40);let day="";
+ h+=list.map(p=>{const d=dayLabel(p.ts),hd=d!==day?`<div class="dh">${d}</div>`:"";day=d;return hd+card(p)}).join("")||`<div class="empty"><div>🌱</div><b>아직 올라온 이야기가 없어요</b><span>✏️ 버튼으로 첫 이야기를 올려보세요</span></div>`;
+ return h}
+const FACES=["😀","😎","🤓","🥳","😇","🤩","🧔","👱‍♀️","👦","🧒","👧","👶","🐶","🐱","🐰","🦊","🐻","🐼","🐯","🦁","🐸","🐵","🦄","🐧","🐥","🦖","🚀","⚽"];
+let pmF=null;
+const pr=n=>((data.profiles||{})[MK[n]])||{};
+const E=n=>pr(n).emoji||I[n]||"";
+const A=n=>pr(n).photo?`<img class="ph" src="${esc(pr(n).photo)}" alt="">`:E(n);
+function editFace(f){if(!me||!(f===me||me==="아빠"))return;pmF=f;fRender();$("pm").style.display="flex"}
+function fClose(){$("pm").style.display="none"}
+function fRender(){const f=pmF;$("pm").innerHTML=`<div class="gc"><h2>${esc(f)}의 얼굴 바꾸기</h2><div style="width:92px;height:92px;margin:0 auto 12px;font-size:56px;display:flex;align-items:center;justify-content:center;background:${C[f]}33;border-radius:50%;overflow:hidden">${A(f)}</div>
+ <label class="btn" style="display:block;margin-bottom:10px">📷 사진 올리기<input type="file" accept="image/*" style="display:none" onchange="facePhoto(this)"></label>
+ <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:12px">${FACES.map(e=>`<button class="rb" style="font-size:22px;padding:5px 0" onclick="faceEmoji('${e}')">${e}</button>`).join("")}</div>
+ <div class="row"><button class="btn" style="flex:1;background:#999" onclick="faceReset()">기본으로</button><button class="btn" style="flex:1" onclick="fClose()">닫기</button></div></div>`}
+function faceEmoji(e){return w("PUT","/profiles/"+MK[pmF],{emoji:e}).then(()=>fRender())}
+function faceReset(){return w("DELETE","/profiles/"+MK[pmF]).then(()=>fRender())}
+function facePhoto(inp){const file=inp.files&&inp.files[0];if(!file)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const n=112,c=document.createElement("canvas");c.width=c.height=n;const x=c.getContext("2d"),m=Math.min(im.width,im.height);x.drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,n,n);w("PUT","/profiles/"+MK[pmF],{photo:c.toDataURL("image/jpeg",0.7)}).then(()=>fRender())};im.src=r.result};r.readAsDataURL(file)}
+let gi=0,dip=null;
+if(window.addEventListener)window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();dip=e});
+function slides(){const k=me==="우빈",a=[
+ {e:"👋",t:"우빈이가족에 오신 걸 환영해요!",d:"우리 가족만의 공간이에요.\n오늘 잘한 일을 나누고, 칭찬스티커와 미션으로 서로 응원해요."},
+ {e:"🏠",t:"화면 둘러보기",d:"아래 메뉴로 이동해요.\n🏠 우리집 : 가족 소식 모아보기\n👨 👩 👦 각자의 공간 : 그 사람의 기록\n💬 대화 : 가족 대화방\n📷 사진첩 : 가족 사진\n📅 일정 : 달력\n내 이름 : 내 공간 (다른 사람 공간은 우리집 위쪽 사진을 눌러요)"+(me==="아빠"?"\n🛠️ 관리 : 아빠만 보여요":"")},
+ {e:"✍️",t:"오늘 이야기 올리기",d:k?"내 공간(👦)에 들어가서 버튼을 눌러 골라요.\n여러 개를 골라서 한 번에 올릴 수 있어요!\n\n😊 잘한일 · 😢 아쉬운일":"내 공간에서 잘한일·아쉬운일을 글로 올려요.\n가족의 글에는 댓글과 👍 👎를 남길 수 있어요.\n내 글은 ✏️ 수정, 🗑️ 삭제할 수 있어요."},
+ {e:"⭐",t:"칭찬스티커",d:"가족의 잘한일 글에서 ⭐ 스티커 주기를 눌러요.\n하루에 한 번만 줄 수 있어요.\n마음이 바뀌면 ↩️ 취소하고 다른 글에 줄 수 있어요."},
+ {e:"🎯",t:"미션",d:k?"엄마 아빠가 미션을 내주면 내 공간에 나타나요.\n다 하면 ✅ 다 했어요! 를 눌러요.\n미션을 낸 사람이 검사하면 ⭐를 받아요!":"우빈 공간에서 미션과 보상 ⭐를 정해 내주세요.\n우빈이 ✅ 다 했어요! 를 누르면\n낸 사람이 검사하고 ⭐를 줘요."},
+ {e:"📅",t:"일정 달력",d:"중요한 일정과 공지를 달력에 올려요.\n날짜를 누르면 그날 일정만 볼 수 있어요.\n가족 모두 볼 수 있어요."},
+ {e:"💬",t:"대화방과 사진첩",d:"💬 대화 : 가족끼리 바로 이야기해요. 이모티콘 버튼도 있어요.\n\n📷 사진첩 : 사진을 올리면 가족 모두 볼 수 있고 ❤️를 누를 수 있어요."}];
+ if(me==="아빠")a.push({e:"🛠️",t:"관리자(아빠)",d:"🛠️ 관리 탭에서 스티커 초기화와 비밀번호 변경을 할 수 있어요.\n모든 글과 댓글을 수정·삭제할 수도 있어요.\n이름을 바꿀 땐 이름 버튼을 2~3초 길게 눌러요."});
+ a.push({e:"📲",t:"앱처럼 설치하기",d:"바탕화면에 아이콘을 만들어 앱처럼 쓸 수 있어요.\n\n🤖 안드로이드 : 브라우저 메뉴(⋮) → '앱 설치' 또는 '홈 화면에 추가'\n🍎 아이폰 : Safari 공유 버튼 → '홈 화면에 추가'",install:1});return a}
+function showGuide(){gi=0;$("guide").style.display="flex";gRender()}
+function gClose(){$("guide").style.display="none";try{localStorage.setItem("guide1","1")}catch(e){}}
+function gGo(n){const a=slides();if(n<0)return;if(n>=a.length)return gClose();gi=n;gRender()}
+function gInstall(){if(dip){dip.prompt();dip=null;gRender()}}
+function gRender(){const a=slides(),x=a[gi],last=gi===a.length-1;
+ $("guide").innerHTML=`<div class="gc"><div class="e">${x.e}</div><h2>${x.t}</h2><p>${x.d}</p>${x.install&&dip?`<button class="btn" style="width:100%;margin-bottom:10px;background:#2fa84f" onclick="gInstall()">📲 지금 설치하기</button>`:""}<div class="dots">${a.map((_,i)=>`<i class="${i===gi?"on":""}"></i>`).join("")}</div>
+ <div class="row">${gi>0?`<button class="btn" style="flex:1;background:#999" onclick="gGo(${gi-1})">이전</button>`:`<button class="btn" style="flex:1;background:#999" onclick="gClose()">건너뛰기</button>`}<button class="btn" style="flex:2" onclick="gGo(${gi+1})">${last?"시작하기 🎉":"다음"}</button></div></div>`}
+let guideAuto=false;
+function banner(){return offline==="perm"?`<div class="off"><b>🔒 서버 사용 기간이 끝났어요</b><br>아빠가 Firebase에서 데이터베이스 규칙을 다시 열어 주세요. (규칙 탭 → 읽기·쓰기 true → 게시)</div>`:offline?`<div class="off">인터넷 연결을 확인해 주세요</div>`:""}
+function render(){if(view==="admin"&&me!=="아빠")view="home";const a=document.activeElement,m=$("main");
+ if(view!=="home"&&lastView==="home")saveSeen();lastView=view;
+ if(view==="chat"&&me){cSeen=Date.now();try{localStorage.setItem("cseen",cSeen)}catch(e){}}
+ $("meb").innerHTML=me?`🔒 <span class="mi">${A(me)}</span>${esc(me)}`:"";document.body.className=me==="우빈"?"kid":"";
+ const nn=me&&view!=="home"?posts().filter(p=>p.type!=="event"&&p.by!==me&&p.ts>seenAt).length:0,cn=me&&view!=="chat"?L(chatData).filter(x=>x.by!==me&&x.ts>cSeen).length:0,bd=n=>n?`<b class="bd">${n>9?"9+":n}</b>`:"";
+ $("nav").innerHTML=[["home","🏠","우리집",nn],["chat","💬","대화",cn],["album","📷","사진첩",0],["plan","📅","일정",0]].concat(me?[[me,"",me,0]]:[]).concat(me==="아빠"?[["admin","🛠️","관리",0]]:[]).map(([k,i,l,n])=>`<button class="${view===k?"on":""}" style="--c:${C[k]||"#5b6bd8"}" onclick="go('${k}')"><span>${FAM.includes(k)?A(k):i}</span>${l}${bd(n)}</button>`).join("");
+ $("fab").style.display=me&&(view==="home"||(FAM.includes(view)&&view!==me))?"flex":"none";$("fabl").textContent=me==="우빈"?"쓰기":"글쓰기";
+ if(me&&view==="chat"&&m.dataset.v==="chat"&&$("msgs")){const nb=innerHeight+scrollY>=document.body.scrollHeight-200;$("msgs").innerHTML=msgsHtml();if(nb)scrollTo(0,document.body.scrollHeight);return}
+ if(a&&/INPUT|TEXTAREA/.test(a.tagName)&&a.value)return;
+ if(me&&!guideAuto){guideAuto=true;let seen=null;try{seen=localStorage.getItem("guide1")}catch(e){}if(!seen)showGuide()}
+ if(!me){$("sheet").style.display="none";m.dataset.v="";m.innerHTML=banner()+`<div class="who"><p class="big">👋</p><h2 style="text-align:center;margin:0">누구세요?</h2>${FAM.map(f=>`<button style="background:${C[f]}" onclick="pick('${f}')">${E(f)} ${f}</button>`).join("")}</div>`;return}
+ if(sheetOpen)$("sheet").innerHTML=sheetHtml();$("sheet").style.display=sheetOpen?"flex":"none";
+ const first=m.dataset.v!==view;m.dataset.v=view;
+ m.innerHTML=adminBanner()+(view!=="home"&&view!=="chat"?`<button class="back" onclick="go('home')">← 우리집으로</button>`:"")+banner()+(view==="home"?home():view==="plan"?plan():view==="admin"?admin():view==="chat"?chatView():view==="album"?album():person(view));
+ if(view==="chat"&&first)scrollTo(0,document.body.scrollHeight)}
+
+function hhmm(ts){const d=new Date(ts);return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}
+function msgsHtml(){const ms=L(chatData).sort((a,b)=>a.ts-b.ts);let day="",h="";
+ ms.forEach(x=>{const d=dayLabel(x.ts),mine=x.by===me;if(d!==day){h+=`<div class="dh" style="text-align:center">${d}</div>`;day=d}
+  h+=`<div class="msg${mine?" me2":""}">${mine?"":`<span class="av" style="background:${C[x.by]}33">${A(x.by)}</span>`}<div class="mb">${mine?"":`<div class="mn" style="color:${C[x.by]}">${esc(x.by)}</div>`}<div class="bb"${mine?` style="background:${C[me]}"`:""}>${esc(x.t)}</div><div class="meta">${hhmm(x.ts)}${(mine||me==="아빠")?`<button class="del" style="padding:0 4px;font-size:13px" aria-label="메시지 삭제" onclick="delMsg('${x.id}')">✕</button>`:""}</div></div></div>`});
+ return h||`<div class="empty"><div>💬</div><b>아직 대화가 없어요</b><span>아래에서 첫 인사를 보내보세요</span></div>`}
+function chatView(){return `<div id="msgs">${msgsHtml()}</div><div class="cbar"><div class="qk">${["👍","❤️","😂","🎉","⭐","사랑해요","고마워요"].map(e=>`<button onclick="sendMsg('${e}')">${e}</button>`).join("")}</div><div class="cin"><input id="cin" placeholder="메시지 쓰기" autocomplete="off" onkeydown="if(event.key==='Enter')sendMsg()"><button class="snd" aria-label="보내기" onclick="sendMsg()">↑</button></div></div>`}
+async function sendMsg(txt){const inp=$("cin"),t=(txt||(inp?inp.value:"")||"").trim();if(!t||!me)return;
+ try{await api("POST","/chat",{by:me,t:t.slice(0,500),ts:Date.now()});if(!txt&&inp)inp.value="";await pollChat(true);scrollTo(0,document.body.scrollHeight)}catch(e){alert("보내지 못했어요. 인터넷을 확인해 주세요.")}}
+async function pollChat(force){try{const r=await fetch(DB+"/chat.json?orderBy=%22%24key%22&limitToLast=80");if(!r.ok)return;const d=(await r.json())||{},s=JSON.stringify(d);if(s!==lastChat||force){lastChat=s;chatData=d;render()}}catch(e){}}
+function delMsg(id){const x=chatData[id];if(!x||!(x.by===me||me==="아빠"))return;if(confirm("이 메시지를 지울까요?"))api("DELETE","/chat/"+id).then(()=>pollChat(true)).catch(()=>alert("저장이 안 됐어요. 인터넷을 확인해 주세요."))}
+function resetCh(){if(me!=="아빠")return;if(confirm("대화를 모두 지울까요?\n\n되돌릴 수 없어요."))api("DELETE","/chat").then(()=>{pollChat(true);toast("💬 대화를 모두 지웠어요")}).catch(()=>alert("저장이 안 됐어요."))}
+let upMsg="";
+function album(){const ps=L(albumData).sort((a,b)=>b.ts-a.ts);
+ return `<div class="card cmp"><div class="ct">📷 사진 올리기</div><input id="acap" placeholder="사진 설명 (없어도 돼요)" maxlength="60"><label class="btn wide" style="display:block;text-align:center">📷 사진 고르기<input type="file" accept="image/*" multiple style="display:none" onchange="upPhotos(this)"></label><div class="meta" id="aup">${esc(upMsg)}</div></div>`+
+ (ps.length?`<div class="grid">${ps.map(p=>`<button class="gi" style="--c:${C[p.by]||"#888"}" onclick="openPh('${p.id}')"><img class="th" src="${esc(p.th)}" alt="${esc(p.cap||"사진")}"><span class="gb">${A(p.by)}</span>${Object.keys(p.rx||{}).length?`<span class="gl">❤️ ${Object.keys(p.rx).length}</span>`:""}</button>`).join("")}</div>`:`<div class="empty"><div>📷</div><b>아직 사진이 없어요</b><span>위에서 첫 사진을 올려보세요</span></div>`)}
+function shrink(file,max,q){return new Promise((ok,no)=>{const r=new FileReader();r.onerror=no;r.onload=()=>{const im=new Image();im.onerror=no;im.onload=()=>{const s=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext("2d").drawImage(im,0,0,c.width,c.height);ok(c.toDataURL("image/jpeg",q))};im.src=r.result};r.readAsDataURL(file)})}
+async function upPhotos(inp){const fs=[...inp.files].slice(0,10);if(!fs.length||!me)return;const cap=($("acap")?$("acap").value:"").trim(),say=t=>{upMsg=t;const e=$("aup");if(e)e.textContent=t};let n=0;
+ try{for(const f of fs){say("올리는 중… "+(n+1)+"/"+fs.length);const full=await shrink(f,900,.72),th=await shrink(f,240,.6),r=await api("POST","/photoData",full);await api("PUT","/photos/"+r.name,{by:me,ts:Date.now()+n,cap,th});n++}
+  say("");inp.value="";if($("acap"))$("acap").value="";await refreshAlbum(true);toast("📷 사진 "+n+"장을 올렸어요!")}
+ catch(e){say("");alert("사진을 올리지 못했어요. 인터넷을 확인하고 다시 해주세요.")}}
+async function refreshAlbum(force){if(!force&&Date.now()-albumT<6000)return;albumT=Date.now();
+ try{const r=await fetch(DB+"/photos.json");if(!r.ok)return;const d=(await r.json())||{},s=JSON.stringify(d);if(s!==lastAlbum){lastAlbum=s;albumData=d;if(view==="album")render();if(phId)pvRender()}}catch(e){}}
+async function openPh(id){phId=id;pvRender();$("pv").style.display="flex";if(!phFull[id]){try{const r=await fetch(DB+"/photoData/"+id+".json");if(r.ok){const v=await r.json();if(v){phFull[id]=v;if(phId===id)pvRender()}}}catch(e){}}}
+function closePh(){phId=null;$("pv").style.display="none"}
+function pvRender(){const p=albumData[phId];if(!p){if(phId)closePh();return}const q={...p,id:phId},k=MK[me],liked=!!(p.rx&&p.rx[k]),who=Object.keys(p.rx||{}).map(x=>E(RK[x])).join("");
+ $("pv").innerHTML=`<div class="pvc"><img class="full" src="${esc(phFull[phId]||p.th)}" alt="${esc(p.cap||"사진")}"><div class="chd"><span class="av" style="background:${C[p.by]}26;box-shadow:0 0 0 2px ${C[p.by]}">${A(p.by)}</span><div><b>${esc(p.by)}</b><div class="meta">${fmt(p.ts)}${phFull[phId]?"":" · 큰 사진 불러오는 중…"}</div></div></div>${p.cap?`<p class="tx" style="margin:6px 2px">${esc(p.cap)}</p>`:""}<div class="row" style="margin-top:8px"><button class="rb${liked?" on":""}" style="flex:none" onclick="likePh()">❤️ ${Object.keys(p.rx||{}).length} ${who}</button>${(p.by===me||me==="아빠")?`<button class="btn sm" style="background:#e04a4a;margin-left:auto" onclick="delPh()">🗑️ 삭제</button>`:""}<button class="btn sm" style="${(p.by===me||me==="아빠")?"":"margin-left:auto;"}background:#7d86a6" onclick="closePh()">닫기</button></div></div>`}
+async function likePh(){const p=albumData[phId];if(!p||!me)return;const k=MK[me],on=p.rx&&p.rx[k];try{await api(on?"DELETE":"PUT","/photos/"+phId+"/rx/"+k,on?undefined:"1");await refreshAlbum(true)}catch(e){alert("저장이 안 됐어요. 인터넷을 확인해 주세요.")}}
+async function delPh(){const p=albumData[phId];if(!p||!(p.by===me||me==="아빠"))return;if(!confirm("이 사진을 지울까요?\n\n되돌릴 수 없어요."))return;const id=phId;try{await api("DELETE","/photos/"+id);await api("DELETE","/photoData/"+id);delete phFull[id];closePh();await refreshAlbum(true);toast("🗑️ 사진을 지웠어요")}catch(e){alert("저장이 안 됐어요. 인터넷을 확인해 주세요.")}}
+function resetPh(){if(me!=="아빠")return;if(confirm("사진을 모두 지울까요?\n\n되돌릴 수 없어요."))Promise.all([api("DELETE","/photos"),api("DELETE","/photoData")]).then(()=>{phFull={};refreshAlbum(true);toast("📷 사진을 모두 지웠어요")}).catch(()=>alert("저장이 안 됐어요."))}
+function sheetHtml(){return `<div class="shp"><div class="hd2"><span>✏️ 새 이야기</span><button aria-label="닫기" onclick="closeSheet()">✕</button></div>${composer()}</div>`}
+function openSheet(){if(!me)return;sheetOpen=true;render()}
+function closeSheet(){sheetOpen=false;render()}
+function setPT(k){ptv=k;render()}
+function setFl(k){fl=k;render()}
+function burst(e){for(let i=0;i<14;i++){const s=document.createElement("span");s.className="bu";s.textContent=e||"⭐";s.style.left=(15+Math.random()*70)+"vw";s.style.setProperty("--dx",(Math.random()*90-45)+"px");s.style.animationDelay=(Math.random()*.3)+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),2000)}}
+function addP(ev){const t=($("ptext").value||"").trim();if(!t)return;const dt=ev?$("pdate").value:"";w("POST","/posts",{type:ev||ptv,by:me,text:t,date:dt,ts:Date.now()}).then(ok=>{if(!ok)return;if(sheetOpen){sheetOpen=false;render()}if(ev&&dt){calY=+dt.slice(0,4);calM=+dt.slice(5,7)-1;selDay=dt;render()}toast("올렸어요! ✨")})}
+function quick(type,t){w("POST","/posts",{type,by:me,text:t,ts:Date.now()}).then(ok=>ok&&toast(type==="good"?"참 잘했어요! 👏":"다음엔 더 잘할 수 있어요 💪"))}
+function addC(id){const i=$("c"+id),t=i.value.trim();if(!t)return;w("POST","/posts/"+id+"/cm",{by:me,t,ts:Date.now()})}
+const canEdit=p=>!!me&&(p.by===me||me==="아빠");
+function rxBar(p){const ents=Object.entries(p.rx||{}),u=ents.filter(e=>e[1]==="up"),d=ents.filter(e=>e[1]==="down"),mine=(p.rx||{})[MK[me]],can=!!me&&p.by!==me;
+ const b=(t,e,l)=>(can?`<button class="rb${mine===t?" on":""}" onclick="react('${p.id}','${t}')">`:`<span class="rb">`)+e+" "+l.length+(l.length?" "+l.map(x=>E(RK[x[0]])).join(""):"")+(can?"</button>":"</span>");
+ return `<div class="rx">${b("up","👍",u)}${b("down","👎",d)}</div>`}
+function react(id,t){if(!me)return;const k=MK[me],cur=((data.posts||{})[id]||{}).rx;return w(cur&&cur[k]===t?"DELETE":"PUT","/posts/"+id+"/rx/"+k,cur&&cur[k]===t?undefined:t)}
+function editP(id){const p=(data.posts||{})[id];if(!p||!canEdit(p))return;const t=prompt("글을 수정해요",p.text);if(t===null)return;if(!t.trim())return alert("내용을 비울 수 없어요");if(t.trim()===p.text)return;return w("PATCH","/posts/"+id,{text:t.trim(),edited:Date.now()}).then(ok=>ok&&toast("✏️ 수정했어요"))}
+function delS(id){const x=(data.stickers||{})[id];if(!x||!(me==="아빠"||(x.from===me&&!x.mission)))return;if(confirm(x.from===me?"준 스티커를 취소할까요?\n(취소하면 오늘 다시 줄 수 있어요)":"이 스티커를 지울까요?"))return w("DELETE","/stickers/"+id).then(ok=>ok&&toast("↩️ 스티커를 취소했어요"))}
+function admin(){if(me!=="아빠")return"";const sts=L(data.stickers).sort((a,b)=>b.ts-a.ts),ms=L(data.missions),ps=L(data.posts),btn=(c,f,t)=>`<button class="btn sm" style="background:${c}" onclick="${f}">${t}</button>`;
+ return `<div class="hero" style="background:linear-gradient(135deg,#3b3a4a,#6b6a80)"><div class="a">🛠️</div><div><h2>관리자 창</h2><div>아빠만 볼 수 있어요</div></div></div>
+ <div class="card"><b>⭐ 스티커 관리</b>${FAM.map(f=>`<div class="row" style="margin:8px 0"><span style="font-size:18px">${E(f)} ${f} · ⭐ ${bal(f)}개</span><span style="margin-left:auto">${btn("#e04a4a","resetS('"+f+"')","초기화")}</span></div>`).join("")}<div style="margin-top:8px">${btn("#888","resetS('')","가족 전체 초기화")}</div></div>
+ <div class="card"><b>🗂️ 최근 스티커</b><div class="meta" style="margin:4px 0">✕를 누르면 그 스티커만 지워져요</div>${sts.slice(0,20).map(x=>`<div class="row" style="margin:6px 0;font-size:14px"><span>${E(x.from)}→${E(x.to)} ⭐${x.n||1} · ${esc(x.r||"")}${x.mission?" (미션)":""}<span class="meta"> ${fmt(x.ts)}</span></span><button class="del" onclick="delS('${x.id}')">✕</button></div>`).join("")||`<p class="meta">스티커가 없어요</p>`}</div>
+ <div class="card"><b>🎯 미션 · 📝 글</b><div class="meta" style="margin:4px 0 8px">미션 ${ms.length}개 · 글 ${ps.length}개 (댓글, 반응 포함)</div><div class="row" style="flex-wrap:wrap">${btn("#e04a4a","resetM()","미션 전체 삭제")}${btn("#e04a4a","resetP()","글 전체 삭제")}${btn("#e04a4a","resetCh()","대화 전체 삭제")}${btn("#e04a4a","resetPh()","사진 전체 삭제")}</div></div>
+ <div class="card"><b>🔑 관리자 비밀번호</b><div class="meta" style="margin:4px 0 8px">지금 비밀번호를 한 번 확인한 뒤 새 번호로 바꿔요</div>${btn("#5b4bdb","changePw()","비밀번호 바꾸기")}</div>`}
+function resetM(){if(me!=="아빠")return;if(confirm("미션을 모두 지울까요?\n\n되돌릴 수 없어요."))return w("DELETE","/missions").then(ok=>ok&&toast("🎯 미션을 모두 지웠어요"))}
+function resetP(){if(me!=="아빠")return;if(confirm("글을 모두 지울까요?\n(댓글, 👍👎도 함께 지워져요)\n\n되돌릴 수 없어요."))return w("DELETE","/posts").then(ok=>ok&&toast("📝 글을 모두 지웠어요"))}
+async function changePw(){if(me!=="아빠")return;const r=await askPw();if(r==="ok"||r==="none")await makePw()}
+function resetS(f){if(me!=="아빠")return;const t=L(data.stickers).filter(x=>!f||x.to===f);if(!t.length)return toast("지울 스티커가 없어요");
+ if(!confirm((f||"가족 전체")+"의 스티커 "+t.length+"개를 모두 지울까요?\n\n되돌릴 수 없어요."))return;const o={};t.forEach(x=>o[x.id]=null);return w("PATCH","/stickers",o).then(ok=>ok&&toast("⭐ 초기화했어요"))}
+function delP(id){const p=(data.posts||{})[id];if(!p||!canEdit(p))return;if(confirm("이 글을 지울까요?"))return w("DELETE","/posts/"+id)}
+function delC(pid,cid){const p=(data.posts||{})[pid],c=p&&(p.cm||{})[cid];if(!c||!(c.by===me||me==="아빠"))return;if(confirm("댓글을 지울까요?"))w("DELETE","/posts/"+pid+"/cm/"+cid)}
+async function giveP(id){const p=data.posts[id];if(!p||!me)return;try{const st=await api("GET","/stickers");if(L(st).some(x=>x.from===me&&!x.mission&&today(x.ts)))return toast("오늘은 이미 스티커를 줬어요 ⭐")}catch(e){}
+return w("POST","/stickers",{from:me,to:p.by,post:id,r:String(p.text).slice(0,30),n:1,ts:Date.now()}).then(ok=>ok&&(burst("⭐"),toast("⭐ "+p.by+"에게 스티커를 줬어요!")))}
+(()=>{const b=document.getElementById("meb");let t;b.onpointerdown=()=>{t=setTimeout(()=>{if(me)adminReset()},2500)};b.onpointerup=b.onpointerleave=b.onpointercancel=()=>clearTimeout(t);b.oncontextmenu=e=>{e.preventDefault()}})();
+render();poll();setInterval(poll,3000);
+if(typeof navigator!=="undefined"&&navigator.serviceWorker)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script></body></html>
